@@ -49,8 +49,8 @@ function fetchWeather(concatApiUrl, firstLoad) {
       let weatherIcon = data.data[0].weather.icon;
       let temperature = data.data[0].temp;
       let humidity = data.data[0].rh;
-      let windSpeed = data.data[0].wind_spd;
-      let uvIndex = data.data[0].uv;
+      let windSpeed = data.data[0].wind_spd.toFixed(2);
+      let uvIndex = data.data[0].uv.toFixed(2);
       let currentTemperatureEl = $(".current-temperature");
 
       currentTemperatureEl.children().remove();
@@ -69,19 +69,19 @@ function fetchWeather(concatApiUrl, firstLoad) {
 
       //Assign UV Scale
       if (uvIndex >= 0 && uvIndex < 3) {
-        $(".uv-index").children("span").addClass("low");
+        $(".uv-index").children("span").addClass("low uvSpan");
       }
       else if (uvIndex >= 3 && uvIndex < 6) {
-        $(".uv-index").children("span").addClass("moderate");
+        $(".uv-index").children("span").addClass("moderate uvSpan");
       }
       else if (uvIndex >= 6 && uvIndex < 8) {
-        $(".uv-index").children("span").addClass("high");
+        $(".uv-index").children("span").addClass("high uvSpan");
       }
       else if (uvIndex >= 8 && uvIndex < 11) {
-        $(".uv-index").children("span").addClass("very-high");
+        $(".uv-index").children("span").addClass("very-high uvSpan");
       }
       else {
-        $(".uv-index").children("span").addClass("extreme");
+        $(".uv-index").children("span").addClass("extreme uvSpan");
       }
 
       //Remove 5 Day Forecast to initialize
@@ -89,7 +89,7 @@ function fetchWeather(concatApiUrl, firstLoad) {
 
       //Next 5 Day Forecast
       for (let i = 1; i < 6; i++) {
-        $(".forecast-list").append("<div class=\"day-" + i + "\"></div>");
+        $(".forecast-list").append("<div class=\"card day-" + i + "\"></div>");
         $(".forecast-list").children(".day-" + [i]).append("<h3></h3>");
         $(".forecast-list").children(".day-" + [i]).append("<p></p>");
         $(".forecast-list").children(".day-" + [i]).append("<p>Temp: </p>");
@@ -170,3 +170,4 @@ $(window).on('load', function (event) {
   loadListOfCities();
   $("#loading-modal").modal('show');
 });
+

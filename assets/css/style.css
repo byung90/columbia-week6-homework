@@ -23,6 +23,32 @@ main{
   line-height: 2.8em;
 }
 
+.uvSpan {
+  padding: 5px;
+  color: white;
+  border-radius: 0.25em;
+}
+
+.low {
+  background-color: green;
+}
+
+.moderate {
+  background-color: yellow;
+}
+
+.high {
+  background-color: orange;
+}
+
+.very-high {
+  background-color: red;
+}
+
+.extreme {
+  background-color: purple;
+}
+
 .city-card-title img {
   height: 43px;
   width: 43px;
@@ -31,3 +57,56 @@ main{
 .current-temperature p {
   line-height: 2.5em;
 }
+
+.five-day-forecast-container {
+  margin-top: 20px;
+}
+
+.five-day-forecast-container h2 {
+  font-size: 28px;
+  line-height: 2.5em;
+}
+
+.forecast-list .card{
+  background-color: #007bff;
+  border-radius: .25em;
+  color: white;
+  padding: 15px 10px 5px 10px;
+  min-width: 170px;
+}
+
+.forecast-list .card h3 {
+  font-size: 24px;
+}
+
+.forecast-list .card img {
+  height: 24px;
+  width: 24px;
+}
+
+#loading-modal{
+  text-align: center;
+}
+
+/* Responsive Medium */
+@media only screen and (min-width: 768px) {  
+  #search-bar {
+    display: none;
+  }
+  
+  aside {
+    display: block;
+  }
+}
+
+/* Responsive Small */
+@media only screen and (max-width: 576px) {   
+  #search-bar {
+    display: block;
+    width: 100%;
+  }
+  aside {
+    display: none;
+  }
+}
+
