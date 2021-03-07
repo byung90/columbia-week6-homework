@@ -1,0 +1,33 @@
+header {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+aside {
+  background-color: #f8f9fa;
+  padding-top: 10px;
+}
+
+.city-list {
+  padding: 10px 0;
+}
+
+main{
+  padding: 10px 0;
+}
+
+.city-card-title{
+  font-size: 36px;
+  line-height: 2.8em;
+}
+
+.city-card-title img {
+  height: 43px;
+  width: 43px;
+}
+
+.current-temperature p {
+  line-height: 2.5em;
+}

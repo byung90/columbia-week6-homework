@@ -3,25 +3,34 @@ var searchFormEl = $('.city-search-input');
 var searchBtnEl = $('.city-search-btn');
 var cityListEl = $('.city-list');
 var weatherApiUrl = "https://api.weatherbit.io/v2.0/forecast/daily?&key=9060a4943ca944f1987566287f545732&";
-var firstLoad = false;
+var firstLoad = true;
 
 //Search for new city
 searchBtnEl.on("click", function (event) {
   event.preventDefault();
   let city = searchFormEl.val();
-  callWeather(city);
-  addCity(city);
+
+  if (listOfCities.indexOf(city) === -1) {
+    addCity(city);
+  }
+  let location = {
+    city: city,
+    lon: null,
+    lat: null,
+    firstLoad: false
+  };
+  callWeather(location);
   displayCities();
 });
 
 //Call Weather
 function callWeather(location) {
   if (location.city !== null) {
-    let concatApiUrl = weatherApiUrl + "city=" + city;
+    let concatApiUrl = weatherApiUrl + "city=" + location.city;
     fetchWeather(concatApiUrl, false);
   }
   else {
-    let concatApiUrl = weatherApiUrl + "lon=" + lon + "&lat=" + lat;
+    let concatApiUrl = weatherApiUrl + "lon=" + location.lon + "&lat=" + location.lat;
     fetchWeather(concatApiUrl, location.firstLoad);
   }
 }
@@ -42,6 +51,15 @@ function fetchWeather(concatApiUrl, firstLoad) {
       let humidity = data.data[0].rh;
       let windSpeed = data.data[0].wind_spd;
       let uvIndex = data.data[0].uv;
+      let currentTemperatureEl = $(".current-temperature");
+
+      currentTemperatureEl.children().remove();
+
+      currentTemperatureEl.append("<h1 class=\"city-card-title\"></h1>");
+      currentTemperatureEl.append("<p class=\"temperature\">Temperature: </p>");
+      currentTemperatureEl.append("<p class=\"humidity\">Humdity: </p>");
+      currentTemperatureEl.append("<p class=\"wind-speed\">Wind Speed: </p>");
+      currentTemperatureEl.append("<p class=\"uv-index\">UV Index: </p>");
 
       $(".city-card-title").append(cityName + " (" + date + ") <img src=\"./assets/images/" + weatherIcon + ".png\" alt=\"" + weatherIcon + "\">");
       $(".temperature").append(temperature + "&#8451;");
@@ -51,24 +69,32 @@ function fetchWeather(concatApiUrl, firstLoad) {
 
       //Assign UV Scale
       if (uvIndex >= 0 && uvIndex < 3) {
-        $(".uv-index").children(".span").addClass("low");
+        $(".uv-index").children("span").addClass("low");
       }
       else if (uvIndex >= 3 && uvIndex < 6) {
-        $(".uv-index").children(".span").addClass("moderate");
+        $(".uv-index").children("span").addClass("moderate");
       }
       else if (uvIndex >= 6 && uvIndex < 8) {
-        $(".uv-index").children(".span").addClass("high");
+        $(".uv-index").children("span").addClass("high");
       }
       else if (uvIndex >= 8 && uvIndex < 11) {
-        $(".uv-index").children(".span").addClass("very-high");
+        $(".uv-index").children("span").addClass("very-high");
       }
       else {
-        $(".uv-index").children(".span").addClass("extreme");
+        $(".uv-index").children("span").addClass("extreme");
       }
+
+      //Remove 5 Day Forecast to initialize
+      $(".forecast-list").children().remove();
 
       //Next 5 Day Forecast
       for (let i = 1; i < 6; i++) {
-        console.log($(".day-" + [i]));
+        $(".forecast-list").append("<div class=\"day-" + i + "\"></div>");
+        $(".forecast-list").children(".day-" + [i]).append("<h3></h3>");
+        $(".forecast-list").children(".day-" + [i]).append("<p></p>");
+        $(".forecast-list").children(".day-" + [i]).append("<p>Temp: </p>");
+        $(".forecast-list").children(".day-" + [i]).append("<p>Humidity: </p>");
+
 
         let futureDayEl = $(".day-" + [i]);
         let futureDate = data.data[i].datetime;
@@ -87,7 +113,9 @@ function fetchWeather(concatApiUrl, firstLoad) {
       }
     })
     .catch(function (error) {
-      console.log(error);
+      listOfCities.pop();
+      displayCities();
+      window.alert("Enter valid city");
     })
 }
 
@@ -118,15 +146,15 @@ function loadListOfCities() {
 
 function getCurrentLocation() {
   navigator.geolocation.watchPosition(function (position) {
-    if (firstLoad === false) {
+    if (firstLoad === true) {
       let location = {
         city: null,
         lon: position.coords.longitude,
         lat: position.coords.latitude,
-        firstLoad: false
+        firstLoad: true
       }
       callWeather(location);
-      firstLoad = true;
+      firstLoad = false;
     }
   },
     function (error) {

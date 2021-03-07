@@ -22,9 +22,11 @@
     <div class="row">
       <aside class="col-3">
         <h3>Search for a City:</h3>
-        <form>
-          <input class="form-control city-search-input" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success city-search-btn" type="submit">Search</button>
+        <form style="display: flex; flex-wrap: wrap;">
+          <input class="form-control city-search-input" type="search" placeholder="Search" aria-label="Search"
+            style="width: 85%;">
+          <button class="btn btn-primary city-search-btn" type="submit" style="width: 15%"><i
+              class="fas fa-search"></i></button>
         </form>
         <ul class="list-group city-list">
 
@@ -32,7 +34,7 @@
       </aside>
       <main class="col-9">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body current-temperature">
             <h1 class="city-card-title"></h1>
             <p class="temperature">Temperature: </p>
             <p class="humidity">Humidity: </p>
@@ -98,7 +100,7 @@
 
 
 
-
+  <script src="https://kit.fontawesome.com/e63efa5866.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
