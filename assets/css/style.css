@@ -90,23 +90,35 @@ main{
 
 /* Responsive Medium */
 @media only screen and (min-width: 768px) {  
-  #search-bar {
+  .search-bar {
     display: none;
   }
-  
+
   aside {
     display: block;
+  }
+
+  .forecast-list .card{
+    color: white;
+    margin-bottom: 10px;
+    margin-right: 10px;
   }
 }
 
 /* Responsive Small */
 @media only screen and (max-width: 576px) {   
-  #search-bar {
+  .search-bar {
     display: block;
     width: 100%;
+    padding-top: 10px;
   }
   aside {
     display: none;
+  }
+  .forecast-list .card{
+    color: white;
+    min-width: 100%;
+    margin-bottom: 10px;
   }
 }
 

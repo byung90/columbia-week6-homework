@@ -18,8 +18,8 @@
   <header>
     <h1>Weather Dashboard</h1>
   </header>
-  <div class="container-xxl d-flex">
-    <section id="search-bar col-sm-12">
+  <div class="container-xxl d-md-flex d-sm-inline-flex">
+    <section class="search-bar col-sm-12">
       <h3>Search for a City:</h3>
       <form style="display: flex; flex-wrap: wrap;">
         <input class="form-control city-search-input" type="search" placeholder="Search" aria-label="Search"
@@ -28,7 +28,7 @@
             class="fas fa-search"></i></button>
       </form>
     </section>
-    <aside class="col-3 px-2">
+    <aside class="col-md-3 px-md-2">
       <h3>Search for a City:</h3>
       <form style="display: flex; flex-wrap: wrap;">
         <input class="form-control city-search-input" type="search" placeholder="Search" aria-label="Search"
@@ -40,7 +40,7 @@
 
       </ul>
     </aside>
-    <main class="col-9 px-2 col-sm-12">
+    <main class="col-md-9 px-md-2 col-sm-12">
       <div class="card current-temperature-container">
         <div class="card-body current-temperature">
           <h1 class="city-card-title"></h1>
@@ -52,7 +52,7 @@
       </div>
       <div class="five-day-forecast-container">
         <h2>5-Day Forecast</h2>
-        <div class="forecast-list d-flex flex-row flex-wrap justify-content-between justify-content-md-start">
+        <div class="forecast-list d-flex flex-row flex-wrap justify-content-lg-between justify-content-md-start">
           <div class="day-1 card">
             <h3></h3>
             <p></p>
