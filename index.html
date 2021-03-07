@@ -1,65 +1,114 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Weather App</title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+
+<head>
+  <title>Weather App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-        <link rel="stylesheet" href="./assets/css/style.css" />       
-    </head>
-    <body>
-        <header>
-            <h1>Weather Dashboard</h1>
-        </header>
-        <div class="container-xxl">
-            <div class="row">
-                <aside class="col-3">
-                    <h3>Search for a City:</h3>
-                    <form>>
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    <ul class="list-group list-group-flush cities">
-                        <li class="list-group-item">An item</li>
-                    </ul>
-                </aside>
-                <main class="col-9">                
-                    <div class="card">
-                        <div class="card-body">
-                          <h1 class="city-card-title">City Date Icon</h1>>
-                          <p class="temperature">Temperature</p>
-                          <p class="humidity">Humidity</p>
-                          <p class="wind-speed">wind-speed</p>
-                          <p class="uv-index">UV Index</p>
-                        </div>
-                    </div>
-                    <div class="five-day-forecast-container">
-                        <h2>5-Day Forecast</h2>
-                        <div class="forecast-list">
-                            <div class="day-1">
-                                <h3>Date</h3>
-                                <p>Icon</p>
-                                <p>Temperature</p>
-                                <p>Humidity</p>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
+
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Weather Dashboard</h1>
+  </header>
+  <div class="container-xxl">
+    <div class="row">
+      <aside class="col-3">
+        <h3>Search for a City:</h3>
+        <form>
+          <input class="form-control city-search-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success city-search-btn" type="submit">Search</button>
+        </form>
+        <ul class="list-group city-list">
+
+        </ul>
+      </aside>
+      <main class="col-9">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="city-card-title"></h1>
+            <p class="temperature">Temperature: </p>
+            <p class="humidity">Humidity: </p>
+            <p class="wind-speed">Wind Speed: </p>
+            <p class="uv-index">UV Index: </p>
+          </div>
         </div>
-        
+        <div class="five-day-forecast-container">
+          <h2>5-Day Forecast</h2>
+          <div class="forecast-list d-flex flex-row justify-content-between">
+            <div class="day-1">
+              <h3></h3>
+              <p></p>
+              <p>Temp: </p>
+              <p>Humidity: </p>
+            </div>
+            <div class="day-2">
+              <h3></h3>
+              <p></p>
+              <p>Temp: </p>
+              <p>Humidity: </p>
+            </div>
+            <div class="day-3">
+              <h3></h3>
+              <p></p>
+              <p>Temp: </p>
+              <p>Humidity: </p>
+            </div>
+            <div class="day-4">
+              <h3></h3>
+              <p></p>
+              <p>Temp: </p>
+              <p>Humidity: </p>
+            </div>
+            <div class="day-5">
+              <h3></h3>
+              <p></p>
+              <p>Temp: </p>
+              <p>Humidity: </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
 
 
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    <!-- Modal -->
+    <div class="modal fade" id="loading-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="loadingModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h1>Loading...</h1>
+            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
     crossorigin="anonymous"></script>
-        <script src="./assets/js/script.js"></script>
-    </body>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+  <script src="./assets/js/script.js"></script>
+</body>
+
 </html>
