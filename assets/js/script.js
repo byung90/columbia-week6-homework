@@ -38,11 +38,6 @@ cityListEl.on("click", function (event) {
   }
 })
 
-
-function loadWeatherFromSavedCity() {
-
-}
-
 //Call Weather
 function callWeather(location) {
   if (location.city !== null) {
