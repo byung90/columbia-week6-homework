@@ -1,3 +1,4 @@
+/* Header */
 header {
   background-color: #343a40;
   color: white;
@@ -5,6 +6,7 @@ header {
   padding: 10px;
 }
 
+/* Search Bar and Result Aside */
 aside {
   background-color: #f8f9fa;
   padding-top: 10px;
@@ -14,10 +16,12 @@ aside {
   padding: 10px 0;
 }
 
+/* Main Content */
 main{
   padding: 10px 0;
 }
 
+/* Top Weather Card */
 .city-card-title{
   font-size: 36px;
   line-height: 2.8em;
@@ -58,6 +62,8 @@ main{
   line-height: 2.5em;
 }
 
+
+/* 5 Day Forecast */
 .five-day-forecast-container {
   margin-top: 20px;
 }
@@ -84,6 +90,7 @@ main{
   width: 24px;
 }
 
+/* Modal */
 #loading-modal{
   text-align: center;
 }
