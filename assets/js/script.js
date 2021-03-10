@@ -23,6 +23,26 @@ searchBtnEl.on("click", function (event) {
   displayCities();
 });
 
+//Load from saved city list
+cityListEl.on("click", function (event) {
+  console.log($(event.target).attr("class"));
+  if ($(event.target).attr("class") === "list-group-item city") {
+    let city = ($(event.target).text());
+    let location = {
+      city: city,
+      lon: null,
+      lat: null,
+      firstLoad: false
+    };
+    callWeather(location);
+  }
+})
+
+
+function loadWeatherFromSavedCity() {
+
+}
+
 //Call Weather
 function callWeather(location) {
   if (location.city !== null) {
@@ -129,7 +149,7 @@ function addCity(city) {
 function displayCities() {
   cityListEl.children().remove();
   $(listOfCities).each(function (index) {
-    cityListEl.append("<li class=\"list-group-item\">" + listOfCities[index] + "</li>");
+    cityListEl.append("<li class=\"list-group-item city\">" + listOfCities[index] + "</li>");
   });
 };
 
